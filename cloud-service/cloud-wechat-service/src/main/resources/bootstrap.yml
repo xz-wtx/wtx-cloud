@@ -1,0 +1,74 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /wechat
+spring:
+  profiles:
+    active: dev
+  application:
+    name: wechat
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      password: ${nacos.password}
+      username: ${nacos.username}
+      #服务注册
+      discovery:
+        #Nacos的注册地址
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+        group: ${nacos.server-group}
+      #读取配置文件
+      config:
+        file-extension: yaml
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+        group: ${nacos.group}
+        #共享的配置文件
+        shared-configs:
+          #redis配置
+          - data-id: common-redis.yaml
+            group: DEFAULT_GROUP
+          #mysql数据库
+          - data-id: common-mysql.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+        #常规配置文件
+        extension-configs:
+            #公共配置文件
+          - data-id: wechat-common.yaml
+            group: ${nacos.group}
+            refresh: true
+seata:
+  enabled: true
+  # 自动数据源代理
+  enable-auto-data-source-proxy: true
+  # 数据源代理模式(分布式事务方案)
+  data-source-proxy-mode: AT
+  #整合nacos注册中心
+  registry:
+    type: nacos
+    nacos:
+      group: ${seata.group}
+      namespace: ${seata.namespace}
+      cluster: default
+      server-addr: ${nacos.server-addr}
+      password: ${nacos.password}
+      username: ${nacos.username}
+  config:
+    type: nacos
+    nacos:
+      group: ${seata.group}
+      namespace: ${seata.namespace}
+      server-addr: ${nacos.server-addr}
+      password: ${nacos.password}
+      username: ${nacos.username}
+  tx-service-group: default_tx_group
+
+#设置feign 客户端超时时间（openFeign默认支持ribbon）
+ribbon:
+  #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ReadTimeout: 120000
+  #指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 120000

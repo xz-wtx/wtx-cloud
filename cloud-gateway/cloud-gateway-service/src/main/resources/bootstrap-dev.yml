@@ -1,0 +1,8 @@
+nacos:
+  namespace: 475b014d-51d0-4e59-bb98-58521539f69b
+  group: GATEWAY_GROUP
+  server-addr: localhost:8848
+  #开发环境区分多人环境
+  server-group: WTX_GROUP
+  password: nacos
+  username: nacos

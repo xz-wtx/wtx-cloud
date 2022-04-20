@@ -1,0 +1,12 @@
+nacos:
+  namespace: 475b014d-51d0-4e59-bb98-58521539f69b
+  group: WECHAT_GROUP
+  server-addr: localhost:8848
+  #开发环境区分多人环境
+  server-group: WTX_GROUP
+  password: nacos
+  username: nacos
+
+seata:
+  namespace: 715b26a0-05ba-4fd4-b253-acb1eaa9f9ec
+  group: SEATA_GROUP

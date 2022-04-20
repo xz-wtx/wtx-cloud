@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.mapper.SysUserMapper">
+
+    <select id="login" resultType="com.cloud.user.entity.SysUserEntity">
+        select * from sys_user
+        <where>
+            <if test="login.account!=null and login.account!=''">
+                and account =#{login.account}
+            </if>
+            <if test="login.password!=null and login.password!=''">
+                and password =#{login.password}
+            </if>
+            <if test="login.openId!=null and login.openId!=''">
+                and open_id =#{login.openId}
+            </if>
+        </where>
+
+    </select>
+</mapper>
