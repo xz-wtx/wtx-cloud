@@ -1,4 +1,4 @@
-package com.cloud.user.controller.api;
+package com.cloud.user.controller.feign;
 
 import com.cloud.user.entity.SysUserEntity;
 import com.cloud.user.service.SysUserService;
@@ -29,7 +29,7 @@ public class UserApiService extends BaseFeignService {
      */
     @RequestMapping("insert")
     public <T> R<T> insert(@RequestBody SysUserEntity sysUser)  {
-        log.info("openFeign调用成功");
+        log.info("openFeign调用成功----");
         return sysUserService.insert(sysUser);
     }
 }

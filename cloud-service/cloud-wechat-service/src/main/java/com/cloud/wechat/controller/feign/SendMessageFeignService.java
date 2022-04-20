@@ -1,4 +1,4 @@
-package com.cloud.wechat.controller.api;
+package com.cloud.wechat.controller.feign;
 
 import com.cloud.common.response.R;
 import com.cloud.wechat.dto.WechatSendDTO;
