@@ -12,7 +12,11 @@ import lombok.extern.log4j.Log4j2;
 public class ServicePrefixConstant {
 
 
-    public final static String USER_SERVICE="user/";
+    public final static String USER_SERVICE="user";
 
-    public final static String WECHAT_SERVICE="wechat/";
+    public final static String WECHAT_SERVICE="wechat";
+
+    public final static String ORDER_SERVICE="order";
+
+    public final static String GOODS_SERVICE="goods";
 }

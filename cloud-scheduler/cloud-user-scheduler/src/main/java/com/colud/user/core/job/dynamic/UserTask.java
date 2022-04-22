@@ -1,11 +1,17 @@
 package com.colud.user.core.job.dynamic;
 
+import com.cloud.common.constant.BaseConstant;
+import com.cloud.common.util.JwtUtils;
+import com.cloud.common.vo.LoginUserVO;
 import com.cloud.user.entity.SysUserEntity;
 import com.cloud.user.feign.UserFeign;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.UUID;
 
@@ -24,6 +30,11 @@ public class UserTask {
 
     @XxlJob("syncUserTask")
     public void syncUserTask(){
+
+        RequestContextHolder.currentRequestAttributes().setAttribute(BaseConstant.AUTH_TOKEN, JwtUtils.createJWT(new LoginUserVO(){{
+            setUserName("定时任务");
+        }}), WebRequest.SCOPE_REQUEST);
+
         log.info("SyncUserTask启动");
         SysUserEntity sysUser=new SysUserEntity(){{
            setAccount(UUID.randomUUID().toString());

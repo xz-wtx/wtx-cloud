@@ -17,6 +17,8 @@
     <modules>
         <module>cloud-user-api</module>
         <module>cloud-wechat-api</module>
+        <module>cloud-order-api</module>
+        <module>cloud-goods-api</module>
     </modules>
 
     <dependencies>

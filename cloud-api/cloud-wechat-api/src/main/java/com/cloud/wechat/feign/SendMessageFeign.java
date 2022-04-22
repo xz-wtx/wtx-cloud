@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Date 2022/4/8 12:06
  * @Version 1.0
  */
-@FeignClient("wechat")
+@FeignClient(ServicePrefixConstant.WECHAT_SERVICE)
 public interface SendMessageFeign {
 
 
@@ -20,7 +20,7 @@ public interface SendMessageFeign {
      * 发送消息
      * @param wechatSendDTO
      */
-    @GetMapping(ServicePrefixConstant.WECHAT_SERVICE +"send/msg")
+    @GetMapping("feign/wechat/send/msg")
      void sendMsg(@RequestBody WechatSendDTO wechatSendDTO);
 
 }

@@ -14,4 +14,6 @@ import lombok.extern.log4j.Log4j2;
 public class LoginUserVO {
 
     public Integer id;
+
+    public String userName;
 }

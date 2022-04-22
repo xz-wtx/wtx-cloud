@@ -1,7 +1,11 @@
 package com.cloud.common.response;
 
 import com.cloud.common.enums.CommonEnum;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description TODO
@@ -48,5 +52,35 @@ public class BR implements Serializable {
     public static <T> R<T> genErrorResult(int resultCode, String message) {
         return genResult(resultCode, null, message);
     }
+
+    /**
+     * @Valid 参数错误
+     * @param result
+     * @return
+     */
+    public static <T> R<T> errorParam(BindingResult result) {
+
+        return errorParam("参数错误",result);
+    }
+    /**
+     * @Valid 参数错误
+     * @param errMsg 错误信息的开头
+     * @param result
+     * @return
+     */
+    public static <T> R<T> errorParam(String errMsg, BindingResult result) {
+        List<FieldError> errors = result.getFieldErrors();
+        StringBuilder returnMessage = new StringBuilder();
+        returnMessage.append(errMsg).append(":参数：{\n");
+        for (FieldError error : errors) {
+            returnMessage.append(error.getField());
+            returnMessage.append(":");
+            returnMessage.append(error.getDefaultMessage());
+            returnMessage.append("\n");
+        }
+        returnMessage.append("}");
+        return genErrorResult(returnMessage.toString());
+    }
+
 
 }

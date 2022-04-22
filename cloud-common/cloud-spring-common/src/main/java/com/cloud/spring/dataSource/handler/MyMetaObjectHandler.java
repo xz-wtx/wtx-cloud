@@ -1,6 +1,8 @@
 package com.cloud.spring.dataSource.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.cloud.common.vo.LoginUserVO;
+import com.cloud.spring.app.ServletUtils;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +20,17 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
+        final LoginUserVO userVO = ServletUtils.getUser();
         fill(metaObject,"delete_flag",0);
+        fill(metaObject,"creator",userVO.getUserName());
+        fill(metaObject,"updater",userVO.getUserName());
         fill(metaObject,"createTime",LocalDateTime.now());
         fill(metaObject,"updateTime",LocalDateTime.now());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
+        fill(metaObject,"updater",ServletUtils.getUser().getUserName());
         fill(metaObject,"updateTime",LocalDateTime.now());
     }
 

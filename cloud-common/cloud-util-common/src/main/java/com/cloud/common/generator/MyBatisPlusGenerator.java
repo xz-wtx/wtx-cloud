@@ -19,12 +19,12 @@ import java.util.Collections;
 public class MyBatisPlusGenerator {
 
     public static Boolean openModule=false;//是否生成分模块
-    public static String url="jdbc:mysql://localhost:3306/cloud-wechat?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
+    public static String url="jdbc:mysql://localhost:3306/cloud-goods?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
     public static String username="root";
     public static String password="root";
 
     public static void main(String[] args) {
-        String projectPath = System.getProperty("user.dir")+"\\cloud-service\\cloud-wechat-service\\";
+        String projectPath = System.getProperty("user.dir")+"\\cloud-service\\cloud-goods-service\\";
         createEntity(projectPath);
     }
 
@@ -64,7 +64,7 @@ public class MyBatisPlusGenerator {
                 //模块名
                 .moduleName("")
                 //设置父包名
-                .parent("com.cloud.wechat")
+                .parent("com.cloud.goods")
                 //设置MVC下各个模块的包名
                 .entity("entity")
                 .mapper("mapper")
@@ -81,7 +81,7 @@ public class MyBatisPlusGenerator {
         StrategyConfig strategy = new StrategyConfig
                 .Builder()
                 //表名 逗号分割
-                .addInclude("wechat_app")
+                .addInclude("goods_info")
                 .entityBuilder()
                 //实体驼峰转换
                 .naming(NamingStrategy.underline_to_camel)

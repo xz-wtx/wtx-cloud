@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Import;
 
+/**
+ * @author 60003404
+ */
 @Import(XxlJobConfig.class)
 @EnableFeignClients(basePackages = {"com.cloud.user.feign"})
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})

@@ -1,4 +1,4 @@
-package com.cloud.spring.dataSource;
+package com.cloud.spring.dataSource.multi;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

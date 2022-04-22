@@ -2,7 +2,10 @@ package com.cloud.spring.imports;
 
 import com.cloud.spring.app.AppContextUtil;
 import com.cloud.spring.Interceptor.config.WebMvcAdapterConfig;
+import com.cloud.spring.feign.FeignConfig;
 import com.cloud.spring.register.WebMvcRegisterConfig;
+
+import com.cloud.spring.sysProperty.SystemPropertyConfig;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -14,8 +17,11 @@ import org.springframework.context.annotation.Import;
 
 @Import({
         AppContextUtil.class,
-        WebMvcAdapterConfig.class,
-        WebMvcRegisterConfig.class
+//        WebMvcAdapterConfig.class,
+        WebMvcRegisterConfig.class,
+        FeignConfig.class,
+        SystemPropertyConfig.class
     })
 public class ImportAll {
+
 }

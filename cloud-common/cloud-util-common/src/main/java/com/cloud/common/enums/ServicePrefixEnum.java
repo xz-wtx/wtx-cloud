@@ -11,8 +11,10 @@ import lombok.extern.log4j.Log4j2;
  */
 @Log4j2
 public enum ServicePrefixEnum {
-    user("user", ServicePrefixConstant.USER_SERVICE),
-    wechat("wechat", ServicePrefixConstant.WECHAT_SERVICE)
+    user(ServicePrefixConstant.USER_SERVICE, ServicePrefixConstant.USER_SERVICE+"/"),
+    wechat(ServicePrefixConstant.WECHAT_SERVICE, ServicePrefixConstant.WECHAT_SERVICE+"/"),
+    order(ServicePrefixConstant.ORDER_SERVICE, ServicePrefixConstant.ORDER_SERVICE+"/"),
+    goods(ServicePrefixConstant.GOODS_SERVICE, ServicePrefixConstant.GOODS_SERVICE+"/")
     ;
     public String serviceName;
 
