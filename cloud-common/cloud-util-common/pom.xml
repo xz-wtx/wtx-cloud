@@ -15,22 +15,11 @@
         公共工具类、jar
     </description>
 
-    <properties>
-        <commons.lang3.version>3.12.0</commons.lang3.version>
-        <java.jwt.version>3.19.1</java.jwt.version>
-        <mybatis.plus.boot.starter.version>3.5.1</mybatis.plus.boot.starter.version>
-        <mybatis.plus.extension.version>3.5.1</mybatis.plus.extension.version>
-        <mybatis.plus.generator.version>3.5.2</mybatis.plus.generator.version>
-        <velocity.engine.core.version>2.3</velocity.engine.core.version>
-        <spring.jdbc.version>5.3.17</spring.jdbc.version>
-        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.80</version>
+            <version>${fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -47,46 +36,23 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.17.0</version>
+            <version>${redisson-spring-boot-starter.version}</version>
         </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+        <!--mybatis-plus整合spring-boot-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.boot.starter.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-extension -->
+        <!--mybatis-plus扩展，如MybatisPlusInterceptor-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-extension</artifactId>
             <version>${mybatis.plus.extension.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>${mybatis.plus.generator.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity-engine-core -->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>${velocity.engine.core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.jdbc.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.java.version}</version>
         </dependency>
     </dependencies>
 

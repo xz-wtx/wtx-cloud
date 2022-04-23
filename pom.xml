@@ -29,7 +29,6 @@
         <module>cloud-api</module>
         <module>cloud-scheduler</module>
         <module>cloud-gateway</module>
-        <module>cloud-common/cloud-util-common</module>
     </modules>
 
     <properties>
