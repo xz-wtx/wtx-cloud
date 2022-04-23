@@ -1,13 +1,15 @@
-package com.cloud.common.generator;
+package com.cloud.generator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.cloud.goods.GoodsServiceApplication;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collections;
+import java.util.Objects;
 
 /**
  * @author wtx
@@ -16,21 +18,35 @@ import java.util.Collections;
  * @Version 1.0
  */
 @Log4j2
-public class MyBatisPlusGenerator {
+public class MyBatisPlusGenerator<T> {
 
-    public static Boolean openModule=false;//是否生成分模块
-    public static String url="jdbc:mysql://localhost:3306/cloud-goods?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
-    public static String username="root";
-    public static String password="root";
+    public  Class<T> className;
+    public  String packageName;
+    public  String projectPath;
+
+    public  Boolean openModule=false;//是否生成分模块
+    public  String url="jdbc:mysql://localhost:3306/cloud-goods?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
+    public  String username="root";
+    public  String password="root";
+
+    public MyBatisPlusGenerator(Class<T> t){
+        className=t;
+        packageName=className.getPackage().getName();
+         String path = Objects.requireNonNull(className.getResource("")).getPath();
+         projectPath = path.substring(1, path.indexOf("target/")).replaceAll("/","\\\\");
+    }
 
     public static void main(String[] args) {
-        String projectPath = System.getProperty("user.dir")+"\\cloud-service\\cloud-goods-service\\";
-        createEntity(projectPath);
+
+        final MyBatisPlusGenerator generator = new MyBatisPlusGenerator(GoodsServiceApplication.class);
+
+        generator.createEntity();
     }
 
 
     //生成实体
-    public static void createEntity(String projectPath) {
+    public  void createEntity() {
+
         if (StringUtils.isBlank(projectPath)){
             throw new RuntimeException("请传入需要生成实体的项目路径");
         }
@@ -64,7 +80,7 @@ public class MyBatisPlusGenerator {
                 //模块名
                 .moduleName("")
                 //设置父包名
-                .parent("com.cloud.goods")
+                .parent(packageName)
                 //设置MVC下各个模块的包名
                 .entity("entity")
                 .mapper("mapper")

@@ -1,0 +1,23 @@
+.table_1{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+::v-deep(.table_1 .el-form-item__label){
+  width: 30%;
+}
+.table_1 .el-form-item__content .el-input{
+  width: 100%;
+}
+.table_1 .el-form-item__content .el-select{
+  width: 100%;
+}
+.table_1 .el-form-item__content .el-input-number {
+  width: 100%;
+}
+.table_1 .el-form-item__content .el-radio-group {
+  width: 100%;
+}
+
+::v-deep(.el-form-item__content) {
+  justify-content: center;
+}

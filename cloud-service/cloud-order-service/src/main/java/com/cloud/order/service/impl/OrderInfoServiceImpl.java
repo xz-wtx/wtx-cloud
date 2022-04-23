@@ -66,7 +66,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             setDeleteFlag(false);
             setTenantId(goodsList.get(0).getTenantId());
             setStatus(0);
-            setUserId(ServletUtils.getUser().getId());
+            setUserId(ServletUtils.getBase64User().getId());
         }};
         orderInfo.setTransactionPrice(transactionPrice);
         orderInfoMapper.insert(orderInfo);

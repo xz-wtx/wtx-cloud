@@ -15,7 +15,25 @@
     <modules>
         <module>cloud-config-common</module>
         <module>cloud-spring-common</module>
+        <module>cloud-util-common</module>
+        <module>cloud-generator-common</module>
     </modules>
+
+    <properties>
+        <xxl-job-core.version>2.3.0</xxl-job-core.version>
+        <xxl-job-core.groovy.version>3.0.10</xxl-job-core.groovy.version>
+
+        <com.alibaba.druid.version>1.2.8</com.alibaba.druid.version>
+
+        <commons.lang3.version>3.12.0</commons.lang3.version>
+        <java.jwt.version>3.19.1</java.jwt.version>
+        <mybatis.plus.boot.starter.version>3.5.1</mybatis.plus.boot.starter.version>
+        <mybatis.plus.extension.version>3.5.1</mybatis.plus.extension.version>
+        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
+        <fastjson.version>2.0.1</fastjson.version>
+        <redisson-spring-boot-starter.version>3.17.0</redisson-spring-boot-starter.version>
+
+    </properties>
 
     <dependencies>
         <!--nacos-->
@@ -34,6 +52,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <!--@ConfigurationProperties注解处理器，给自定义的配置类生成元数据信息的-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

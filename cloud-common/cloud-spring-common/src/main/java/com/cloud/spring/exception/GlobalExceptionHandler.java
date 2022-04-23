@@ -1,5 +1,6 @@
 package com.cloud.spring.exception;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.cloud.common.enums.CommonEnum;
 import com.cloud.common.response.BR;
 import com.cloud.common.response.R;
@@ -36,10 +37,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public <T> R<T> runtimeExceptionHandler(NativeWebRequest request, Exception e) {
+        e.printStackTrace();
         if (e instanceof CommonException ce) {
             return BR.genErrorResult(ce.getCode(),ce.getErrorMsg());
         }
-        e.printStackTrace();
+        if (e instanceof TokenExpiredException ce){
+            return BR.genErrorResult(ce.getMessage());
+        }
         return BR.genResult(CommonEnum.ERROR_500);
     }
 

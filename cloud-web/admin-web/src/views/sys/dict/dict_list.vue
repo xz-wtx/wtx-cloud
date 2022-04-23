@@ -1,0 +1,99 @@
+<template>
+  <x_init>
+    <x_table
+        ref="tableRef"
+        :table-data="tableData"
+        @load-data="loadData"></x_table>
+    <el-dialog
+        v-model="tableData.dialog.visible_1"
+        title="添加/修改字典表"
+        width="40%"
+        draggable
+        :destroy-on-close="true"
+        :close-on-click-modal="false"
+    >
+      <dict_edit :table-data="tableData"></dict_edit>
+    </el-dialog>
+  </x_init>
+</template>
+
+<script lang="ts">
+
+import {reactive} from "vue";
+import Dict_edit from "@/views/sys/dict/dict_edit.vue";
+import userCommon from "@/plugins/useCommon";
+
+export default {
+  name: "dict_list",
+  components: {Dict_edit},
+  setup(){
+    const { proxy,upState,createTable,message }=userCommon();
+    const data=reactive<any>({});
+
+    let xTableData = createTable();
+
+
+    xTableData.search.fields={
+      code: {placeholder: '编号', type: "input", title: '编号'},
+      key: {placeholder: 'key', type: "input", title: 'KEY'},
+      value: {placeholder: '值', type: "input", title: '值'},
+      remark: {placeholder: '备注', type: "input", title: '备注'},
+    };
+    xTableData.search.but=[
+      {
+        title:"添加",//TODO 按钮名称
+        func:add,//TODO 事件
+        auth:"white_path_add"//TODO 按钮权限（可写可不写）
+        //icon:'',//TODO 图片（可写可不写）
+      },
+    ]
+    xTableData.column=[
+      {prop: 'code',label: '编号'},
+      {prop: 'key',label: 'KEY'},
+      {prop: 'value',label: '值'},
+      {prop: 'remark',label: 'remark'}
+    ]
+    xTableData.columnBut={
+      width: 200,
+      but: [
+        {name: "修改",func: edit,authType:[1],auth:"white_path_edit"},
+        {name: "删除",func: upStatus,b_v:'Y',authType:[1],auth:"white_path_edit"},
+      ]
+    };
+
+    let tableData = reactive<any>(xTableData);
+
+    let methods={
+      //加载数据
+      loadData(obj){
+        proxy.$api.admin.dict_api.getPageList(obj).then(res=>{
+          tableData.pageLoad(res)
+        })
+      },
+    }
+    //新增
+    function add(){
+      tableData.dialog.selectData=[];
+      tableData.dialog.visible_1=true;
+    }
+    //修改
+    function edit(obj) {
+      add();
+      tableData.dialog.selectData.push(obj);
+    }
+    //禁用，启用，删除
+    function upStatus(obj,but) {
+      upState(obj,but,tableData,proxy.$api.admin.dict_api.del);
+    }
+    return{
+      tableData,
+      data,
+      ...methods,
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

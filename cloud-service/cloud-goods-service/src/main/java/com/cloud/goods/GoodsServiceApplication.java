@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
 public class GoodsServiceApplication {
 
     public static void main(String[] args) {
-        System.setProperty("project.name","goods服务");
+
         SpringApplication.run(GoodsServiceApplication.class, args);
     }
 

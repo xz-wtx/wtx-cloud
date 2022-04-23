@@ -11,8 +11,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class BaseConstant {
 
+    /**
+     * token标识
+     */
     public static final String AUTH_TOKEN="auth_token";
 
+    /**
+     * user信息标识（Base64加密）
+     */
+    public static final String AUTH_TOKEN_USER="auth_token_user";
     /**
      * 布隆过滤器,所有请求
      */

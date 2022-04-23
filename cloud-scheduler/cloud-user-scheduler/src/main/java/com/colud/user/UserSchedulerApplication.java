@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 /**
  * @author 60003404
  */
-@Import(XxlJobConfig.class)
+@Import({XxlJobConfig.class})
 @EnableFeignClients(basePackages = {"com.cloud.user.feign"})
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 public class UserSchedulerApplication {

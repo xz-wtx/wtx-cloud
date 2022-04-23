@@ -20,7 +20,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        final LoginUserVO userVO = ServletUtils.getUser();
+        final LoginUserVO userVO = ServletUtils.getBase64User();
         fill(metaObject,"delete_flag",0);
         fill(metaObject,"creator",userVO.getUserName());
         fill(metaObject,"updater",userVO.getUserName());
@@ -30,7 +30,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        fill(metaObject,"updater",ServletUtils.getUser().getUserName());
+        fill(metaObject,"updater",ServletUtils.getBase64User().getUserName());
         fill(metaObject,"updateTime",LocalDateTime.now());
     }
 
