@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class BaseConstant {
 
+
     public static final String PASSWORD="123456";
 
     /**
@@ -23,10 +24,7 @@ public class BaseConstant {
      */
     public static final String AUTH_TOKEN_USER="auth_token_user";
 
-    /**
-     * 布隆过滤器,需要鉴权请求
-     */
-    public static final String BLOOM_FILTER_AUTH="bloom_filter:auth";
+
 
 
 }

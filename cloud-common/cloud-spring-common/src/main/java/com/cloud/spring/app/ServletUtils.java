@@ -7,7 +7,6 @@ import com.cloud.common.exception.CommonException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 

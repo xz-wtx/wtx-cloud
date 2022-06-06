@@ -39,7 +39,8 @@ public class MyBatisPlusGenerator<T> {
 
     public static void main(String[] args) {
 
-        final MyBatisPlusGenerator generator = new MyBatisPlusGenerator(UserServiceApplication.class);
+
+        final MyBatisPlusGenerator generator = new MyBatisPlusGenerator(GoodsServiceApplication.class);
 
         generator.createEntity();
     }
