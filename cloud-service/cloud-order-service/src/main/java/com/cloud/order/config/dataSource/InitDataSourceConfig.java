@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
-
+import java.util.List;
 
 
 /**
@@ -22,5 +22,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(value = {"com.cloud.order.mapper"})
 public class InitDataSourceConfig extends SingleDataSourceConfig {
+
 
 }

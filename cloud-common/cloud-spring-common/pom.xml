@@ -39,6 +39,12 @@
                 <version>${com.alibaba.druid.version}</version>
             </dependency>
 
+            <!--rocketmq-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+            </dependency>
+
         </dependencies>
 
 </project>

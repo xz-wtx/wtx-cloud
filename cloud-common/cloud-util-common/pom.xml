@@ -54,6 +54,24 @@
             <artifactId>mybatis-plus-extension</artifactId>
             <version>${mybatis.plus.extension.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+        <!--验证码-->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>${captcha.version}</version>
+        </dependency>
+        <!--easy-captcha 经过百度了解JavaScript引擎在高版本移除掉了,-->
+        <dependency>
+            <groupId>org.openjdk.nashorn</groupId>
+            <artifactId>nashorn-core</artifactId>
+            <version>${nashorn-core.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

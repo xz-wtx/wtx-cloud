@@ -15,16 +15,18 @@ import org.springframework.core.annotation.Order;
 public class GatewayConfiguration {
 
 
+
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
-    public MyGatewayBlockExceptionHandler sentinelGatewayBlockExceptionHandler() {
+    public MyGatewayBlockExceptionHandler gatewayBlockExceptionHandler() {
+
         // Register the block exception handler for Spring Cloud Gateway.
         return new MyGatewayBlockExceptionHandler();
     }
 
     @Bean
     @Order(-1)
-    public GlobalFilter sentinelGatewayFilter() {
+    public GlobalFilter mySentinelGatewayFilter() {
         return new SentinelGatewayFilter();
     }
 

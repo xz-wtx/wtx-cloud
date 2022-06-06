@@ -19,7 +19,16 @@ public class DataSourceContextHolder extends AbstractRoutingDataSource {
      */
     @Override
     protected Object determineCurrentLookupKey() {
-        log.info("当前选择的数据源是:" + CONTEXT_HOLDER.get());
+
+        if (CONTEXT_HOLDER.get()==null){
+            this.getResolvedDataSources().forEach((k,v)->{
+                if (v==this.getResolvedDefaultDataSource()){
+                    log.info("当前选择的数据源是:" + k);
+                }
+            });
+        }else{
+            log.info("当前选择的数据源是:" + CONTEXT_HOLDER.get());
+        }
         return CONTEXT_HOLDER.get();
     }
 

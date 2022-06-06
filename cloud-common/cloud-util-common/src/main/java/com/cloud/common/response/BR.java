@@ -5,6 +5,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +36,12 @@ public class BR implements Serializable {
     public static <T> R<T> genSuccessResult(T data) {
         return genResult(CommonEnum.SUCCESS.getCode(), data, CommonEnum.SUCCESS.getMessage());
     }
-
+    public static <T> R<T> genSuccessResultEmptyObject() {
+        return genResult(CommonEnum.SUCCESS.getCode(), (T)"{}", CommonEnum.SUCCESS.getMessage());
+    }
+    public static <T> R<T> genSuccessResultEmptyArray() {
+        return genResult(CommonEnum.SUCCESS.getCode(), (T)new ArrayList<>(), CommonEnum.SUCCESS.getMessage());
+    }
     public static <T> R<T> genDefSuccessResult(String message) {
         return genResult(CommonEnum.SUCCESS.getCode(), null, message);
     }

@@ -21,6 +21,6 @@ import org.springframework.context.annotation.Import;
         ExtFeignConfig.class,
         SystemPropertyConfig.class
     })
-public class ImportAll {
+public class ImportCustomSpringConfig {
 
 }

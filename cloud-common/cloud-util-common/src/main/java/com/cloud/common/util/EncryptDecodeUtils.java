@@ -34,4 +34,5 @@ public class EncryptDecodeUtils {
     public static <T> T  base64Dec(String text,Class<T> obj){
         return JSON.parseObject(new String(Base64.getDecoder().decode(text.getBytes())),obj);
     }
+
 }

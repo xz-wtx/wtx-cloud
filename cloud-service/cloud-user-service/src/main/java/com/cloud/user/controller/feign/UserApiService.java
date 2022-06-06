@@ -22,7 +22,7 @@ public class UserApiService extends BaseFeignService {
     @Autowired
     SysUserService sysUserService;
     /**
-     * 新增用户
+     * 新增用户 （feign示例）
      * @param sysUser
      * @param <T>
      * @return
@@ -30,6 +30,7 @@ public class UserApiService extends BaseFeignService {
     @RequestMapping("insert")
     public <T> R<T> insert(@RequestBody SysUserEntity sysUser)  {
         log.info("openFeign调用成功");
-        return sysUserService.insert(sysUser);
+        sysUser.setId(null);
+        return sysUserService.editUser(sysUser);
     }
 }

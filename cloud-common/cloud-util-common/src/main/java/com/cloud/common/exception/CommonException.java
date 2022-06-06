@@ -1,4 +1,4 @@
-package com.cloud.spring.exception;
+package com.cloud.common.exception;
 
 
 import com.cloud.common.enums.CommonEnum;
@@ -13,17 +13,17 @@ public class CommonException extends RuntimeException{
 	private String  errMsg;
 
 	public CommonException(int code, String errMsg){
-		super();
+		super(errMsg);
 		this.code = code;
 		this.errMsg = errMsg;
 	}
 	public CommonException(String errMsg){
-		super();
+		super(errMsg);
 		this.code = 500;
 		this.errMsg = errMsg;
 	}
 	public CommonException(CommonEnum commonEnum){
-		super();
+		super(commonEnum.getMessage());
 		this.code = commonEnum.getCode();
 		this.errMsg = commonEnum.getMessage();
 	}

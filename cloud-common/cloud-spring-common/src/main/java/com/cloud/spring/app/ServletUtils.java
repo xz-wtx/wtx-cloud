@@ -2,13 +2,11 @@ package com.cloud.spring.app;
 
 import com.cloud.common.constant.BaseConstant;
 import com.cloud.common.util.EncryptDecodeUtils;
-import com.cloud.common.util.JwtUtils;
 import com.cloud.common.vo.LoginUserVO;
-import com.cloud.spring.exception.CommonException;
+import com.cloud.common.exception.CommonException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;

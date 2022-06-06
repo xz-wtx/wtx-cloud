@@ -18,4 +18,10 @@ public class LoginDTO {
     public String account;
 
     public String openId;
+
+    public String token;
+
+    public String captchaKey;
+
+    public String captchaCode;
 }

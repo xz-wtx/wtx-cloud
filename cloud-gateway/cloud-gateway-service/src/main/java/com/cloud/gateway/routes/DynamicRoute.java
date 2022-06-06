@@ -33,7 +33,7 @@ import java.util.concurrent.Executor;
  *         "filters": [
  *             {
  *                 "args": {
- *                     "parts": "1" //1不带前缀、0带前缀
+ *                     "parts": "1" //请求路径切割 如/a/b/c;  0:/a/b/c; 1:/b/c  2:/c
  *                 },
  *                 "name": "StripPrefix"
  *             }

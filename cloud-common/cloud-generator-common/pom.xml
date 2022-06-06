@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.wtx</groupId>
+            <artifactId>cloud-util-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
         <!--mybatis-plusd代码生成器-->
         <dependency>
@@ -41,6 +46,12 @@
         <dependency>
             <groupId>com.wtx</groupId>
             <artifactId>cloud-goods-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.wtx</groupId>
+            <artifactId>cloud-user-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

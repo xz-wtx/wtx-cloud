@@ -1,5 +1,6 @@
 package com.cloud.spring.app;
 
+import lombok.NonNull;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +17,7 @@ public class AppContextUtil implements ApplicationContextAware {
 
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
         if (AppContextUtil.applicationContext == null) {
             AppContextUtil.applicationContext = applicationContext;
         }

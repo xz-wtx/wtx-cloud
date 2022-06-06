@@ -21,7 +21,17 @@ public class ProcessUtil {
      * @param msg
      */
     public static DataBuffer endProcess(HttpStatus httpStatus,ServerHttpResponse response,String msg){
-        return  endProcess(httpStatus, response, httpStatus.value(), msg);
+        response.setStatusCode(httpStatus);
+        return  endProcess(response, httpStatus.value(), msg);
+    }
+    /****
+     * 结束程序
+     * @param response
+     * @param msg
+     */
+    public static DataBuffer endProcess(Integer code,ServerHttpResponse response,String msg){
+        response.setRawStatusCode(code);
+        return  endProcess( response, code, msg);
     }
     /****
      * 结束程序
@@ -29,14 +39,12 @@ public class ProcessUtil {
      * @param code
      * @param msg
      */
-    public static DataBuffer endProcess(HttpStatus httpStatus,ServerHttpResponse response, Integer code, String msg){
+    public static DataBuffer endProcess(ServerHttpResponse response, Integer code, String msg){
         //指定编码，否则在浏览器中会中文乱码
         response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
         final R<Object> result = BR.genErrorResult(code,msg);
         byte[] bits = JSONObject.toJSONString(result).getBytes(StandardCharsets.UTF_8);
-        DataBuffer buffer = response.bufferFactory().wrap(bits);
-        response.setStatusCode(httpStatus);
-        return  buffer;
+        return response.bufferFactory().wrap(bits);
     }
 
 }

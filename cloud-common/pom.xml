@@ -30,8 +30,12 @@
         <mybatis.plus.boot.starter.version>3.5.1</mybatis.plus.boot.starter.version>
         <mybatis.plus.extension.version>3.5.1</mybatis.plus.extension.version>
         <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
-        <fastjson.version>2.0.1</fastjson.version>
+        <fastjson.version>1.2.80</fastjson.version>
         <redisson-spring-boot-starter.version>3.17.0</redisson-spring-boot-starter.version>
+
+        <hutool.version>5.7.22</hutool.version>
+        <captcha.version>1.6.2</captcha.version>
+        <nashorn-core.version>15.4</nashorn-core.version>
 
     </properties>
 

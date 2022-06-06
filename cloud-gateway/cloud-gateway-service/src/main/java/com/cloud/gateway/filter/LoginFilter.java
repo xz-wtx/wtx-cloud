@@ -1,8 +1,8 @@
 package com.cloud.gateway.filter;
 
+
 import com.cloud.gateway.util.IPUtils;
 import com.cloud.gateway.util.ProcessUtil;
-import com.cloud.common.constant.BaseConstant;
 import lombok.extern.log4j.Log4j2;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RedissonClient;
@@ -46,7 +46,6 @@ public class LoginFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         final ServerHttpResponse response = exchange.getResponse();
         final ServerHttpRequest request = exchange.getRequest();
-
         if (!"localhost".equals(request.getURI().getHost())){
             //1.检查是否在白名单
             final String ip = IPUtils.getIp(request);
@@ -55,11 +54,8 @@ public class LoginFilter implements GlobalFilter, Ordered {
                 return response.writeWith(Mono.just(ProcessUtil.endProcess(HttpStatus.FORBIDDEN,response,"无权限调用")));
             }
          }
-            //2.通过布隆过滤器 检查是否请求是否未本系统的请求
-        final RBloomFilter<Object> bloomFilter = redissonClient.getBloomFilter(BaseConstant.BLOOM_FILTER_ALL);
-        if (!bloomFilter.contains(request.getURI())){
-                return response.writeWith(Mono.just(ProcessUtil.endProcess(HttpStatus.FORBIDDEN,response,"找不到服务")));
-        }
+
+
 
         return chain.filter(exchange);
     }

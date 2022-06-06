@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.mapper.SysDeptMapper">
+
+    <select id="getTreeList" resultType="com.cloud.common.vo.TreeVO">
+        SELECT
+            id as id,
+            parent_id as parentId,
+            id as `value`,
+            `name` as label
+        FROM
+            sys_dept
+        WHERE `status`=0 AND delete_flag=0
+        <if test="dept.id!=null">
+            and id=#{dept.id}
+        </if>
+        <if test="dept.level!=null">
+            and level=#{dept.level}
+        </if>
+    </select>
+</mapper>

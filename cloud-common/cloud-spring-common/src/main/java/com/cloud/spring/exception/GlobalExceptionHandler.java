@@ -2,6 +2,7 @@ package com.cloud.spring.exception;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.cloud.common.enums.CommonEnum;
+import com.cloud.common.exception.CommonException;
 import com.cloud.common.response.BR;
 import com.cloud.common.response.R;
 import lombok.extern.log4j.Log4j2;

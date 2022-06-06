@@ -12,12 +12,11 @@ import com.cloud.order.mapper.OrderInfoDetailMapper;
 import com.cloud.order.mapper.OrderInfoMapper;
 import com.cloud.order.service.OrderInfoService;
 import com.cloud.spring.app.ServletUtils;
-import com.cloud.spring.exception.CommonException;
+import com.cloud.common.exception.CommonException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -87,13 +86,13 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             BeanUtils.copyProperties(entityDTO,entity);
             final GoodsInfoEntity goodsInfo = entityMap.get(entity.getGoodsId());
             if (Objects.isNull(goodsInfo)){
-                throw new CommonException("商品:"+entity.getGoodsName()+",不存在或已下架");
+                throw new CommonException("商品:《"+entity.getGoodsName()+"》,不存在或已下架");
             }
             if (Objects.isNull(entity.getBuyTotal())){
-                throw new CommonException("商品:"+entity.getGoodsName()+",没有选择购买数量");
+                throw new CommonException("商品:《"+entity.getGoodsName()+"》,没有选择购买数量");
             }
             if (entity.getBuyTotal()+goodsInfo.getBuyTotal()>goodsInfo.getTotal()) {
-                throw new CommonException("商品:"+goodsInfo.getName()+",库存不足");
+                throw new CommonException("商品:《"+goodsInfo.getName()+"》,库存不足");
             }
             //获取每个商品购买金额
             entity.setOriginalPrice(goodsInfo.getOriginalPrice());

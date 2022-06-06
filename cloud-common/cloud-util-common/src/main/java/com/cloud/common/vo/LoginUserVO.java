@@ -16,4 +16,9 @@ public class LoginUserVO {
     public Integer id;
 
     public String userName;
+
+    public String token;
+
+    public String signStr;
+
 }

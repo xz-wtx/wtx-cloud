@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.cloud.goods.GoodsServiceApplication;
+import com.cloud.user.UserServiceApplication;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,7 +26,7 @@ public class MyBatisPlusGenerator<T> {
     public  String projectPath;
 
     public  Boolean openModule=false;//是否生成分模块
-    public  String url="jdbc:mysql://localhost:3306/cloud-goods?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
+    public  String url="jdbc:mysql://localhost:3306/cloud-user?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true";
     public  String username="root";
     public  String password="root";
 
@@ -38,7 +39,7 @@ public class MyBatisPlusGenerator<T> {
 
     public static void main(String[] args) {
 
-        final MyBatisPlusGenerator generator = new MyBatisPlusGenerator(GoodsServiceApplication.class);
+        final MyBatisPlusGenerator generator = new MyBatisPlusGenerator(UserServiceApplication.class);
 
         generator.createEntity();
     }
@@ -97,7 +98,15 @@ public class MyBatisPlusGenerator<T> {
         StrategyConfig strategy = new StrategyConfig
                 .Builder()
                 //表名 逗号分割
-                .addInclude("goods_info")
+                .addInclude("sys_dept",
+                        "sys_dict",
+                        "sys_menu",
+                        "sys_role",
+                        "sys_role_menu",
+                        "sys_user",
+                        "sys_user_role",
+                        "sys_white_ip",
+                        "sys_white_path")
                 .entityBuilder()
                 //实体驼峰转换
                 .naming(NamingStrategy.underline_to_camel)

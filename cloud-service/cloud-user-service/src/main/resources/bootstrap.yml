@@ -13,16 +13,16 @@ spring:
     nacos:
       password: ${nacos.password}
       username: ${nacos.username}
+      #Nacos的注册地址
+      server-addr: ${nacos.server-addr}
       #服务注册
       discovery:
         #Nacos的注册地址
-        server-addr: ${nacos.server-addr}
         namespace: ${nacos.namespace}
         group: ${nacos.server-group}
       #读取配置文件
       config:
         file-extension: yaml
-        server-addr: ${nacos.server-addr}
         namespace: ${nacos.namespace}
         group: ${nacos.group}
         #共享的配置文件
@@ -35,9 +35,9 @@ spring:
           - data-id: common-mysql.yaml
             group: DEFAULT_GROUP
             refresh: true
-        #常规配置文件
-        extension-configs:
-          #mysql数据库
+        #扩展配置文件
+#        extension-configs:
+#          #mysql数据库
 #          - data-id: wechat-mysql.yaml
 #            group: ${nacos.group}
 #            refresh: true

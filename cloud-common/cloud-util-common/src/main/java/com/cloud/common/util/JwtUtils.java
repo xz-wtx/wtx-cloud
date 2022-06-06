@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
+import com.cloud.common.exception.CommonException;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Date;
@@ -24,9 +25,9 @@ import java.util.UUID;
 public class JwtUtils {
 
     /**
-     * 过期时间设置(30分钟)
+     * 过期时间设置(120分钟)
      */
-    public static final long EXPIRE_TIME = 30*60*1000;
+    public static final long EXPIRE_TIME = 1000*60*60*2;
 
     /**
      * 私钥设置(随便乱写的)
@@ -102,13 +103,14 @@ public class JwtUtils {
 
             return obj;
         }catch (Exception e){
+            e.printStackTrace();
             if (e instanceof SignatureVerificationException){
-                throw new RuntimeException("token无效",e);
+                throw new CommonException(402,"token无效");
             }
             if (e instanceof TokenExpiredException){
-                throw new TokenExpiredException("token过期，请重新登录");
+                throw new CommonException(401,"token过期，请重新登录");
             }
-            throw new RuntimeException("token解析异常",e);
+            throw new CommonException(403,"token解析异常");
         }
 
     }

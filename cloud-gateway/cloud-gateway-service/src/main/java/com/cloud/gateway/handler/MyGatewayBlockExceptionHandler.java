@@ -1,5 +1,7 @@
 package com.cloud.gateway.handler;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.cloud.common.exception.CommonException;
 import com.cloud.gateway.util.ProcessUtil;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
@@ -9,6 +11,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
@@ -35,11 +38,13 @@ public class MyGatewayBlockExceptionHandler implements WebExceptionHandler {
     public Mono<Void> handle(ServerWebExchange exchange,@NonNull Throwable ex) {
         final ServerHttpRequest request = exchange.getRequest();
         if (exchange.getResponse().isCommitted()) {
+            ex.printStackTrace();
             return Mono.error(ex);
         }
         log.error("[全局异常处理] 异常请求路径:{}, 记录异常信息:{}", request.getPath(), ex.getMessage());
         // This exception handler only handles rejection by Sentinel.
         if (!BlockException.isBlockException(ex)) {
+            ex.printStackTrace();
             final ServerHttpResponse response = exchange.getResponse();
             String message= ex.getMessage();
             if (ex instanceof final ResponseStatusException ex1){
@@ -47,6 +52,10 @@ public class MyGatewayBlockExceptionHandler implements WebExceptionHandler {
                     message = ex.getMessage() + request.getPath();
                     return response.writeWith(Mono.just(ProcessUtil.endProcess(ex1.getStatus(),response,message)));
                 }
+            }
+
+            if (ex instanceof CommonException ex2){
+                return response.writeWith(Mono.just(ProcessUtil.endProcess(ex2.getCode(),response,message)));
             }
             return response.writeWith(Mono.just(ProcessUtil.endProcess(HttpStatus.INTERNAL_SERVER_ERROR,response,message)));
         }

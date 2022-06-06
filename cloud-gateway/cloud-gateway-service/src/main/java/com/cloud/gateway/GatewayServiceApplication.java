@@ -1,12 +1,17 @@
 package com.cloud.gateway;
 
+import com.cloud.gateway.config.GatewayConfiguration;
+import com.cloud.gateway.handler.MyGatewayBlockExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author wtx
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class GatewayServiceApplication {
 
     public static void main(String[] args) {
@@ -15,5 +20,6 @@ public class GatewayServiceApplication {
 
         SpringApplication.run(GatewayServiceApplication.class, args);
     }
+
 
 }

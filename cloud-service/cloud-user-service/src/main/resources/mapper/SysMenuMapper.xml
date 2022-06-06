@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.mapper.SysMenuMapper">
+
+    <select id="getTreeList" resultType="com.cloud.common.vo.TreeVO">
+        select
+            id as id,
+            parent_id as parentId,
+            id as `value`,
+            `title` as label
+        from sys_menu
+        WHERE `status`=0 AND delete_flag=0
+
+        <if test="menu.types != null and menu.types.size() >0">
+            and `type` in
+            <foreach collection="menu.types" open="(" close=")" item="item" separator=",">
+            #{item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

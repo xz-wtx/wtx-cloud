@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.wtx</groupId>
-            <artifactId>cloud-util-common</artifactId>
+            <artifactId>cloud-config-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -1,6 +1,6 @@
 package com.cloud.wechat;
 
-import com.cloud.spring.imports.ImportAll;
+import com.cloud.spring.imports.ImportCustomSpringConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 /**
  * @author wtx
  */
-@Import({ImportAll.class})
+@Import({ImportCustomSpringConfig.class})
 @EnableFeignClients(basePackages = {"com.cloud.user.feign"})
 @SpringBootApplication
 @EnableConfigurationProperties

@@ -1,12 +1,16 @@
 package com.cloud.user.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -14,31 +18,21 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wtx
- * @since 2022-04-14
+ * @since 2022-04-26
  */
 @Getter
 @Setter
 @TableName("sys_user")
-@Accessors(chain=true)
 public class SysUserEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
-    /**
-     * 微信id
-     */
-    private String openId;
-
-    /**
-     * 账号
-     */
-    private String account;
 
     /**
      * 手机号
@@ -51,14 +45,24 @@ public class SysUserEntity implements Serializable {
     private String userName;
 
     /**
-     * 图像
+     * 部门ID
      */
-    private String img;
+    private Integer deptId;
+
+    /**
+     * 账号
+     */
+    private String account;
 
     /**
      * 密码
      */
     private String password;
+
+    /**
+     * 图像
+     */
+    private String img;
 
     /**
      * 邮箱
@@ -68,7 +72,7 @@ public class SysUserEntity implements Serializable {
     /**
      * 性别
      */
-    private Boolean sex;
+    private Integer sex;
 
     /**
      * token
@@ -76,14 +80,14 @@ public class SysUserEntity implements Serializable {
     private String token;
 
     /**
-     * 状态：0否 1是
+     * 状态:（0正常 1停用）
      */
     private Integer status;
 
     /**
      * 是否删除：0否，1是
      */
-    private Boolean deleteFlag;
+    private Integer deleteFlag;
 
     /**
      * 最后登录时间
@@ -93,26 +97,24 @@ public class SysUserEntity implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 创建人
      */
-    @TableField(fill = FieldFill.INSERT)
     private String creator;
 
     /**
      * 修改人
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updater;
 
 
+    @TableField(exist = false)
+    private List<Integer> roleIds;
 }

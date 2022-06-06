@@ -24,6 +24,7 @@
         <module>cloud-wechat-service</module>
         <module>cloud-order-service</module>
         <module>cloud-goods-service</module>
+        <module>cloud-bus-service</module>
     </modules>
 
     <dependencies>

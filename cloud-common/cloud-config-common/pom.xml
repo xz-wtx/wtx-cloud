@@ -35,7 +35,7 @@
             <version>${groovy.version}</version>
         </dependency>
 
-        <!--负载均衡-->
+        <!--负载均衡:由于springcloud2020弃用了Ribbon，因此Alibaba在2021版本nacos中删除了Ribbon的jar包，因此无法通过lb路由到指定微服务，出现了503情况。所以只需要引入springcloud loadbalancer包即可-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>

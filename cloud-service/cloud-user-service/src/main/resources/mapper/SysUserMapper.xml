@@ -11,10 +11,29 @@
             <if test="login.password!=null and login.password!=''">
                 and password =#{login.password}
             </if>
-            <if test="login.openId!=null and login.openId!=''">
-                and open_id =#{login.openId}
-            </if>
         </where>
 
+    </select>
+    <select id="getPageUserList" resultType="com.cloud.user.vo.SysUserDetailVO">
+        SELECT
+            *,
+            IFNULL(( SELECT GROUP_CONCAT(role_id) FROM sys_user_role WHERE user_id = u.id ), "" ) AS roleIds
+        FROM
+            sys_user u where u.delete_flag=0
+            <if test="sysUser.account!=null and sysUser.account!=''">
+              and  u.account like concat('%',#{sysUser.account},'%')
+            </if>
+            <if test="sysUser.phone!=null and sysUser.phone!=''">
+                and  u.phone like concat('%',#{sysUser.phone},'%')
+            </if>
+            <if test="sysUser.userName!=null and sysUser.userName!=''">
+                and  u.user_name like concat('%',#{sysUser.userName},'%')
+            </if>
+            <if test="sysUser.status!=null">
+                and  u.status = #{sysUser.status}
+            </if>
+            <if test="sysUser.deptId!=null">
+                and  u.dept_id = #{sysUser.deptId}
+            </if>
     </select>
 </mapper>
